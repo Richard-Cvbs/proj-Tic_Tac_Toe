@@ -1,0 +1,99 @@
+html,
+body{
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    background-color: aliceblue;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+body{
+    display: flex;
+    flex-direction: column;
+}
+header{
+    font-size: 3rem;
+    text-align: center;
+    padding: 1rem;
+    background-color: #FEF08A;
+    color: #475569;
+}
+footer{
+    background-color: #475569;
+    color: red;
+    text-align: center;
+    padding: 1rem;
+    font-size: 2rem;
+}
+.content{
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+}
+.playArea{
+    background-color: #1F2937;
+    color: white;
+    font-weight: 600;
+    font-size: 2rem;
+    padding: 1rem;
+    display: grid;
+    gap: 1rem;
+}
+/* Imported visible grid from = https://stackoverflow.com/questions/50587865/how-to-make-grid-lines-visible*/
+.playArea-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    --c:linear-gradient(#DC2626,#DC2626);
+    --p:10px;
+    --w:calc(100% - 2*var(--p));
+    background:
+    /* vertical lines*/
+     var(--c) var(--p) var(--p) / 1px var(--w),
+     var(--c) calc(1*(var(--w) / 3) + var(--p)) var(--p) / 2px var(--w),
+     var(--c) calc(2*(var(--w) / 3) + var(--p)) var(--p) / 2px var(--w),
+     var(--c) calc(3*(var(--w) / 3) + var(--p)) var(--p) / 1px var(--w),
+    /* horizontal lines*/
+     var(--c) var(--p) var(--p) / var(--w)  1px,
+     var(--c) var(--p) calc(1*(var(--w) / 3) + var(--p)) / var(--w) 2px,
+     var(--c) var(--p) calc(2*(var(--w) / 3) + var(--p)) / var(--w) 2px,
+     var(--c) var(--p) calc(3*(var(--w) / 3) + var(--p)) / var(--w) 1px;
+    padding:calc(--p);
+    background-repeat:no-repeat; 
+    background-color: #2196F3;
+  }
+  .grid-item {
+    padding: 50px;
+    font-size: 5rem;
+    text-align: center;
+  }
+  .player-cont{
+      display: grid;
+      grid-template-rows: auto 1fr;
+      grid-template-columns: auto auto;
+      padding: 1rem;
+  }
+  legend{
+      grid-column: 1/3;
+      text-align: center;
+  }
+  .player-item{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      font-size: 2rem;
+  }
+  .grid-button{
+      background: none;
+      border: none;
+      color: white;
+      font-weight: 600;
+  }
+  .grid-button:hover{
+      color: #F97316;
+  }
+  .grid-button:active{
+      color: #EA580C;
+  }
+  .game-turn{
+      text-align: center;
+  }

@@ -46,12 +46,13 @@ const module1 = (function(){
             return CurrentTurn = 1
         } CurrentTurn = 0
     }
-    let writeIntoArray = function(x,y){
+    let writeIntoArray = function(x,y,e){
         let posibleInput1 = [x,y,0].join()
         let posibleInput2 = [x,y,1].join()
         if (gameBoardArray.includes(posibleInput1)||gameBoardArray.includes(posibleInput2)){
             return
         }
+        buttonChange(e)
         let currentInput = [x,y,CurrentTurn].join()
         gameBoardArray.push(currentInput)
          let winner = checkForMatch()
@@ -123,11 +124,20 @@ const module1 = (function(){
                 let inputArray = preamble.split(',')
                 let x = inputArray[0]
                 let y = inputArray[1]
-                writeIntoArray(x,y)
+                writeIntoArray(x,y,e)
             })
         })
         }
         gridListen()
+    let buttonChange = function(e){
+        let currentSimbol = function(CurrentTurn){
+            if (CurrentTurn === 0){
+                return "X"
+            } return "O"
+        }(CurrentTurn)
+        let pressedBttn = e.target
+        pressedBttn.textContent = `${currentSimbol}`
+    }
     return{
         checkForMatch,
         gameBoardArray,
@@ -135,4 +145,3 @@ const module1 = (function(){
         gridListen
     }
 })(document);
-/* module1.gridListen() */

@@ -39,7 +39,7 @@ Array.prototype.contains = function (thing) {
 
 
 const module1 = (function(){
-    const gameBoardArray = []
+    let gameBoardArray = []
     let CurrentTurn = 0
     const changeTurn = function (){
         if (CurrentTurn === 0){
@@ -55,10 +55,17 @@ const module1 = (function(){
         buttonChange(e)
         let currentInput = [x,y,CurrentTurn].join()
         gameBoardArray.push(currentInput)
-         let winner = checkForMatch()
+        let winner = checkForMatch()
         if (winner){
-            console.log(winner)
+            endMatch(winner)
         }
+        if (winner){
+            increaseScore(winner)
+            gameBoardArray = []
+            winner = null
+            return
+        }
+        console.log(gameBoardArray)
         changeTurn()
         }
     let getResultValue = function(array1,array2){
@@ -105,9 +112,7 @@ const module1 = (function(){
 
         let winner = null
         let resultO = measureAllResults(gameBoardArray,winO)
-        console.log(resultO)
         let resultX = measureAllResults(gameBoardArray,winX)
-        console.log(resultX)
         if (resultO){
             winner = "O"
         }
@@ -138,6 +143,42 @@ const module1 = (function(){
         let pressedBttn = e.target
         pressedBttn.textContent = `${currentSimbol}`
     }
+    let endMatch = function(winner){
+        if (!winner){
+            return
+        }
+        let gameTurn = document.querySelector('.game-turn')
+        if (winner === player1.simbol){
+            gameTurn.textContent = `The Winner Is ${player1.name}`
+        }
+        if (winner === player2.simbol){
+            gameTurn.textContent = `The Winner Is ${player2.name}`
+        }
+        let allButtonsContent = document.querySelectorAll('.grid-item')
+        allButtonsContent.forEach(Element =>{
+            Element.textContent = "-"
+        })
+        winner = null
+    }
+    const playerFactory = (name,simbol) => {
+        let score = 0
+        return { name, simbol, score};
+      };
+    let increaseScore = function (winner){
+        let player1Score  = document.querySelector('.player1-score')
+        let player2Score = document.querySelector('.player2-score')
+        if (winner === player1.simbol){
+            player1.score++
+            player1Score.textContent = `${player1.score}`
+        }
+        if (winner === player2.simbol){
+            player2.score++
+            player2Score.textContent = `${player2.score}`
+        }
+    }
+
+    let player1 = playerFactory("John","X")
+    let player2 = playerFactory("Paul","O")
     return{
         checkForMatch,
         gameBoardArray,
@@ -145,3 +186,11 @@ const module1 = (function(){
         gridListen
     }
 })(document);
+
+const playerFactory = (name) => {
+    let score = 0
+    return { name, score};
+  };
+
+let player1 = playerFactory("John")
+let player2 = playerFactory("Paul")

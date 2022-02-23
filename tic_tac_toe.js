@@ -2,13 +2,11 @@
 - Create Array ++
 - Change Turn ++
 - if Space Occupied Return ++
-- Check for 3 values in a row 
-- Check for tie
-- Create Player Objects
-- Keep Score
+- Check for 3 values in a row ++
+- Check for tie ++
+- Create Player Objects ++
+- Keep Score ++
  */
-
-
 /* import .contains method from https://stackoverflow.com/questions/7837456/how-to-compare-arrays-in-javascript */
 if(Array.prototype.contains)
     console.warn("Overriding existing Array.prototype.contains. Possible causes: New API defines the method, there's a framework conflict or you've got double inclusions in your code.");
@@ -42,9 +40,13 @@ const module1 = (function(){
     let gameBoardArray = []
     let CurrentTurn = 0
     const changeTurn = function (){
+        let gameTurn = document.querySelector('.game-turn')
         if (CurrentTurn === 0){
+            gameTurn.textContent = "Paul's Turn! (O)"
             return CurrentTurn = 1
-        } CurrentTurn = 0
+        } 
+        gameTurn.textContent = "John's Turn (X)"
+        CurrentTurn = 0
     }
     let writeIntoArray = function(x,y,e){
         let posibleInput1 = [x,y,0].join()

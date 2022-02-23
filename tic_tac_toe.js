@@ -66,6 +66,12 @@ const module1 = (function(){
             return
         }
         console.log(gameBoardArray)
+        console.log(checkForTie(gameBoardArray,winner))
+        tieValue = checkForTie(gameBoardArray,winner)
+        if (tieValue){
+            resetIfTied(gameBoardArray)
+            return
+        }
         changeTurn()
         }
     let getResultValue = function(array1,array2){
@@ -176,9 +182,24 @@ const module1 = (function(){
             player2Score.textContent = `${player2.score}`
         }
     }
-
+    let checkForTie = function(gameBoardArray,winner){
+        if (gameBoardArray.length === 9 && !winner){
+            return true
+        } return false
+    }
+    let resetIfTied = function (tie){
+        if(tie){
+        let allGridItems  = document.querySelectorAll('.grid-item')
+        allGridItems.forEach(Element  =>{
+            Element.textContent = "-"
+        })
+        gameBoardArray = []
+        return
+        }
+    }
     let player1 = playerFactory("John","X")
     let player2 = playerFactory("Paul","O")
+
     return{
         checkForMatch,
         gameBoardArray,

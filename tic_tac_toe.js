@@ -39,7 +39,7 @@ Array.prototype.contains = function (thing) {
 
 
 const module1 = (function(){
-    const gameBoardArray = ['2,1,1','2,2,1','2,3,1']
+    const gameBoardArray = []
     let CurrentTurn = 0
     const changeTurn = function (){
         if (CurrentTurn === 0){
@@ -115,9 +115,24 @@ const module1 = (function(){
         }
         return winner
         }
+    let gridListen = function (){
+        let allButtons = document.querySelectorAll('.grid-item')
+        allButtons.forEach(Element =>{
+            Element.addEventListener('click', e =>{
+                let preamble = e.target.value
+                let inputArray = preamble.split(',')
+                let x = inputArray[0]
+                let y = inputArray[1]
+                writeIntoArray(x,y)
+            })
+        })
+        }
+        gridListen()
     return{
         checkForMatch,
         gameBoardArray,
-        writeIntoArray
+        writeIntoArray,
+        gridListen
     }
-})();
+})(document);
+/* module1.gridListen() */
